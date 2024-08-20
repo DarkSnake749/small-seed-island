@@ -1,1 +1,1 @@
-# small-seed-island
+# Small Seed Island
