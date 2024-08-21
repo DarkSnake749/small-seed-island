@@ -1,5 +1,6 @@
 import pygame
 from camera import Camera
+from player import Player
 
 # Init pygame library
 pygame.init()
@@ -11,7 +12,7 @@ class Game:
 
     def __init__(
             self, win_size: tuple[int, int], caption: str, icon: pygame.Surface, FPS: int,
-            backdrop_color: str, camera: Camera
+            backdrop_color: str, sprites: list
     ) -> None:
         self.__win: pygame.Surface = pygame.display.set_mode(win_size)
         """Variable that contain the surface of the window"""
@@ -30,7 +31,7 @@ class Game:
         self.__backdrop_color: str = backdrop_color
         """Color of the default background"""
 
-        self.__camera: Camera = camera
+        self.__camera: Camera = Camera(self.__win)
         """Camera of the game"""
 
     def __event_loop(self) -> None:
@@ -74,4 +75,5 @@ class Game:
     
     def run(self) -> None:
         """Run the game"""
+        self.__camera.add(Player())
         self.__game_loop()

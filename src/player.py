@@ -1,36 +1,52 @@
 import pygame
 
 class Player:
-    def __init__(self) -> None:
-        self.__color: str = "Black"
-        self.__width: int = 35
-        self.__height: int = 35
-        self.__pos_x: float = 0.0
-        self.__pos_y: float = 0.0
-        self.player_rect = (self.__pos_x, self.__pos_y, self.__width, self.__height)
+    def __init__(
+            self, color: str = "white", width: int = 35, height: 
+            int = 35, acceleration: float = .5, speed: float = 4.5
+        ) -> None:
+        self.id: str = "player"
+        """Identification of the player"""
+
+        # Paramters
+        self.__color: str = color
+        self.__width: int = width
+        self.__height: int = height
+        self.__acceleration: float = acceleration
+        self.__speed: float = speed
+
+        # Image of the player
+        self.image: pygame.Surface = pygame.Surface((self.__width, self.__height))
+        self.image.fill(self.__color)
+        # Player collider
+        self.rect: pygame.Rect = self.image.get_rect()
     
     def movement(self) -> None:
-        acceleration: float = 0.5
-        vel_x: float = 0
-        vel_y: float = 0
+        """Move the player"""
+        velocity: pygame.math.Vector2 = pygame.math.Vector2(0 , 0)
 
+        # Listen for inputs
         key = pygame.key.get_pressed()
         if key[pygame.K_w]:
-            vel_y -= 4.5
+            velocity.y -= self.__speed
         if key[pygame.K_s]:
-            vel_y += 4.5
+            velocity.y += self.__speed
         if key[pygame.K_a]:
-            vel_x -= 4.5
+            velocity.x -= self.__speed
         if key[pygame.K_d]:
-            vel_x += 4.5
+            velocity.x += self.__speed
 
-        if key[pygame.K_w] == False and key[pygame.K_s] == False:
-            vel_y = vel_y * acceleration
-        if key[pygame.K_a] == False and key[pygame.K_d] == False:
-            vel_x = vel_x * acceleration
-        self.__pos_x += vel_x
-        self.__pos_y += vel_y
-        self.player_rect = (self.__pos_x, self.__pos_y, self.__width, self.__height)
+        # Add acceleration
+        if not key[pygame.K_w] and not key[pygame.K_s]:
+            velocity.y *= self.__acceleration
+        if not key[pygame.K_a] and not key[pygame.K_d]:
+            velocity.x *= self.__acceleration
+
+        # Update position
+        self.rect.x += velocity.x
+        self.rect.y += velocity.y
     
-    def draw_player(self, screen) -> None:
-        pygame.draw.rect(screen, self.__color, self.player_rect)
+    def update(self) -> None:
+        """Update the player"""
+        self.movement()
+        
