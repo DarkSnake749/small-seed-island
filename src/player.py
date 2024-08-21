@@ -1,15 +1,15 @@
 import pygame
 
 class Player:
-    def __init__(self):
-        self.color: str = "Black"
+    def __init__(self) -> None:
+        self.__color: str = "Black"
         self.__width: int = 35
         self.__height: int = 35
         self.__pos_x: float = 0.0
         self.__pos_y: float = 0.0
         self.player_rect = (self.__pos_x, self.__pos_y, self.__width, self.__height)
     
-    def movement(self):
+    def movement(self) -> None:
         acceleration: float = 0.5
         vel_x: float = 0
         vel_y: float = 0
@@ -31,3 +31,6 @@ class Player:
         self.__pos_x += vel_x
         self.__pos_y += vel_y
         self.player_rect = (self.__pos_x, self.__pos_y, self.__width, self.__height)
+    
+    def draw_player(self, screen) -> None:
+        pygame.draw.rect(screen, self.__color, self.player_rect)
