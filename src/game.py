@@ -1,4 +1,5 @@
 import pygame
+from camera import Camera
 
 # Init pygame library
 pygame.init()
@@ -10,7 +11,7 @@ class Game:
 
     def __init__(
             self, win_size: tuple[int, int], caption: str, icon: pygame.Surface, FPS: int,
-            backdrop_color: str
+            backdrop_color: str, camera: Camera
     ) -> None:
         self.__win: pygame.Surface = pygame.display.set_mode(win_size)
         """Variable that contain the surface of the window"""
@@ -26,8 +27,11 @@ class Game:
         self.__fps = FPS
         """Framereate of the game"""
 
-        self.backdrop_color: str = backdrop_color
+        self.__backdrop_color: str = backdrop_color
         """Color of the default background"""
+
+        self.__camera: Camera = camera
+        """Camera of the game"""
 
     def __event_loop(self) -> None:
         """
@@ -43,20 +47,16 @@ class Game:
     def __reset(self) -> None:
         """Reset the game window"""
         backdrop: pygame.Surface = pygame.Surface(self.__win.get_size())
-        backdrop.fill()
+        backdrop.fill(self.__backdrop_color)
         self.__win.blit(backdrop, (0,0))
-    
-    def __draw(self) -> None:
-        """Draw all element in the window"""
-        # Reset the screen
-        self.__reset()
     
     def __update(self) -> None:
         """Update the all element of the window"""
-        # Draw element on the window
-        self.__draw()
+        # Reset the window
+        self.__reset()
 
         # Update other element on the screen
+        self.__camera.update()
 
         # Update the display
         pygame.display.update()

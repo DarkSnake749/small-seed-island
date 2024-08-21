@@ -3,7 +3,7 @@ from game import Game
 
 def main() -> None:
     """Main function of the script"""
-    game = Game((WIDTH, HEIGHT), CAPTION, ICON, FPS, BACKDROP_COLOR)
+    game = Game((WIDTH, HEIGHT), CAPTION, ICON, FPS, BACKDROP_COLOR, CAMERA)
     game.run()
 
 # Launch the game
