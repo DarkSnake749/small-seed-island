@@ -4,7 +4,7 @@ from camera import Camera
 # Window
 WIDTH = 500
 HEIGHT = 500
-CAPTION = "Small Seed Island"
+TITLE = "Small Seed Island"
 ICON = Surface((20, 20))
 
 # Other paramters

@@ -2,23 +2,20 @@ import pygame
 from camera import Camera
 from player import Player
 
-# Init pygame library
-pygame.init()
-
 class Game:
     """
     Game class. Manage window, events and rendering.
     """
 
     def __init__(
-            self, win_size: tuple[int, int], caption: str, icon: pygame.Surface, FPS: int,
+            self, window_size: tuple[int, int], title: str, icon: pygame.Surface, FPS: int,
             backdrop_color: str, sprites: list
     ) -> None:
-        self.__win: pygame.Surface = pygame.display.set_mode(win_size)
+        self.__window: pygame.Surface = pygame.display.set_mode(window_size)
         """Variable that contain the surface of the window"""
 
         # Change the title of the window
-        pygame.display.set_caption(caption)
+        pygame.display.set_caption(title)
 
         pygame.display.set_icon(icon)
 
@@ -31,7 +28,7 @@ class Game:
         self.__backdrop_color: str = backdrop_color
         """Color of the default background"""
 
-        self.__camera: Camera = Camera(self.__win)
+        self.__camera: Camera = Camera(self.__window, sprites)
         """Camera of the game"""
 
     def __event_loop(self) -> None:
@@ -47,9 +44,9 @@ class Game:
     
     def __reset(self) -> None:
         """Reset the game window"""
-        backdrop: pygame.Surface = pygame.Surface(self.__win.get_size())
+        backdrop: pygame.Surface = pygame.Surface(self.__window.get_size())
         backdrop.fill(self.__backdrop_color)
-        self.__win.blit(backdrop, (0,0))
+        self.__window.blit(backdrop, (0,0))
     
     def __update(self) -> None:
         """Update the all element of the window"""

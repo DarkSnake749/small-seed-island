@@ -35,6 +35,10 @@ class Player:
             velocity.x -= self.__speed
         if key[pygame.K_d]:
             velocity.x += self.__speed
+        
+        if (key[pygame.K_a] or key[pygame.K_d]) and (key[pygame.K_w] or key[pygame.K_s]):
+            velocity.x /= (2**0.5)
+            velocity.y /= (2**0.5)
 
         # Add acceleration
         if not key[pygame.K_w] and not key[pygame.K_s]:
@@ -49,4 +53,3 @@ class Player:
     def update(self) -> None:
         """Update the player"""
         self.movement()
-        

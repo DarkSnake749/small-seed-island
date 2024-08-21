@@ -1,7 +1,7 @@
 import pygame
 
 class Camera:
-    def __init__(self, display: pygame.Surface, sprites: list = []) -> None:
+    def __init__(self, display: pygame.Surface, sprites: list) -> None:
         self.sprites: list = sprites
         """List of all sprite that will be drawn on the screen"""
 
