@@ -1,1 +1,0 @@
-1. Add a config/setttings for all the Game class paramter

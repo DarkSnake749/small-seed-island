@@ -1,7 +1,11 @@
+from pygame import Surface
+
+# Window
 WIDTH = 500
 HEIGHT = 500
-Name = "Small Seed Island"
-ICON_WIDTH = 20
-ICON_HEIGHT = 20
+CAPTION = "Small Seed Island"
+ICON = Surface(20, 20)
+
+# Other paramters
 FPS = 120
-BACKGROUNDCOLOR = "Black"
+BACKDROP_COLOR = "Black"

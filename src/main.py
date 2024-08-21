@@ -1,9 +1,9 @@
-from pygame import Surface
+from config import *
 from game import Game
 
 def main() -> None:
     """Main function of the script"""
-    game = Game((500, 500), "App", Surface((20,20)), 120)
+    game = Game((WIDTH, HEIGHT), CAPTION, ICON, FPS, BACKDROP_COLOR)
     game.run()
 
 # Launch the game
