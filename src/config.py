@@ -1,0 +1,7 @@
+WIDTH = 500
+HEIGHT = 500
+Name = "Small Seed Island"
+ICON_WIDTH = 20
+ICON_HEIGHT = 20
+FPS = 120
+BACKGROUNDCOLOR = "Black"
