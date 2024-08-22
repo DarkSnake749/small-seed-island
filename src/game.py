@@ -44,6 +44,11 @@ class Game:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_e:
+                    for sprite in self.__camera.sprites:
+                        if sprite.id == "player":
+                            sprite.inventory_state = True if not sprite.inventory_state else False
     
     def __reset(self) -> None:
         """Reset the game window"""
@@ -58,6 +63,12 @@ class Game:
 
         # Update other element on the screen
         self.__camera.update()
+
+        #check if the state of the inventoty is on
+        for sprite in self.__camera.sprites:
+            if sprite.id == "player":
+                if sprite.inventory_state == True:
+                    sprite.draw_inventory(self.__window)
 
         # Update the display
         pygame.display.update()
