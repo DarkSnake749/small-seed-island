@@ -46,7 +46,9 @@ class Game:
                 exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_e:
-                    self.player.inventory_state = True if not self.player.inventory_state else False
+                    for sprite in self.__camera.sprites:
+                        if sprite.id == "player":
+                            sprite.inventory_state = True if not sprite.inventory_state else False
     
     def __reset(self) -> None:
         """Reset the game window"""

@@ -21,7 +21,7 @@ class Player:
         self.__direction: pygame.math.Vector2 = pygame.math.Vector2(0, 0)
 
         #state of the player
-        self.draw_inventory_state: bool = False
+        self.inventory_state: bool = False
 
         # Image of the player
         self.image: pygame.Surface = pygame.Surface((self.__width, self.__height))
@@ -91,9 +91,9 @@ class Player:
         pygame.draw.rect(screen, (200, 200, 200), ((gc.WIDTH / 2) - (524 / 2), (gc.HEIGHT / 2) - (360 / 2), 524, 360))
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                if self.player.inventory_state == True:
+                if self.inventory_state == True:
                     if event.key == pygame.K_e:
-                        self.player.inventory_state = False
+                        self.inventory_state = False
 
     def update(self) -> None:
         """Update the player"""
