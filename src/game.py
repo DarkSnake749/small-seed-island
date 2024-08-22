@@ -63,7 +63,7 @@ class Game:
         self.__camera.update()
 
         #check if the state of the inventoty is on
-        for sprite in self.__camera.sprites():
+        for sprite in self.__camera.sprites:
             if sprite.id == "player":
                 if sprite.inventory_state == True:
                     sprite.draw_inventory(self.__window)
