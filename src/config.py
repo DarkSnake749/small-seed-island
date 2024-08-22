@@ -26,7 +26,7 @@ class Game_config:
 
 class Player_config:
     COLOR: str = "white"
-    WIDTH: int = ((Game_config.WIDTH + Game_config.HEIGHT) / 2) / 35
+    WIDTH: int = 35
     HEIGTH: int = WIDTH
     ACCELERATION: float = .5
     SPEED: float = WIDTH / 10
