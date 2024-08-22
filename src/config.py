@@ -10,15 +10,15 @@ info = display.Info()
 class Game_config:
 
     # size
-    WIDTH = info.current_w
-    HEIGHT = info.current_h
+    WIDTH: int = info.current_w
+    HEIGHT: int = info.current_h
 
-    TITLE = "Small Seed Island"
-    ICON = Surface((20, 20))
+    TITLE: str= "Small Seed Island"
+    ICON: Surface = Surface((20, 20))
 
     # Other paramters
-    FPS = 120
-    BACKDROP_COLOR = "Black"
+    FPS: int = 120
+    BACKDROP_COLOR: str = "Black"
 
     # Camera
     SPRITES: list = []
