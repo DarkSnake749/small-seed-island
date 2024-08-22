@@ -1,8 +1,9 @@
 import pygame
+from random import randrange
+
 from camera import Camera
 from player import Player
 from entity import Tree
-from config import Player_config as pc
 
 class Game:
     """
@@ -13,7 +14,7 @@ class Game:
             self, window_size: tuple[int, int], title: str, icon: pygame.Surface, FPS: int,
             backdrop_color: str, sprites: list
     ) -> None:
-        self.__window: pygame.Surface = pygame.display.set_mode(window_size, pygame.RESIZABLE)
+        self.__window: pygame.Surface = pygame.display.set_mode(window_size, pygame.FULLSCREEN)
         """Variable that contain the surface of the window"""
 
         # Change the title of the window
@@ -74,10 +75,13 @@ class Game:
     
     def run(self) -> None:
         """Run the game"""
-        self.__camera.add(Player())
-       
         # ? Debug element for the camera
         for _ in range(1): 
-            self.__camera.add(Tree(starting_pos=(250, 250)))
-            
+            self.__camera.add(Tree(starting_pos=(
+                randrange(0, self.__window.get_width()), 
+                randrange(0, self.__window.get_height())
+            )))
+        
+        # ! Add the player after all other element
+        self.__camera.add(Player(self.__camera))
         self.__game_loop()
