@@ -5,6 +5,8 @@ from camera import Camera
 from player import Player
 from entity import Tree
 
+from items import Apple
+
 class Game:
     """
     Game class. Manage window, events and rendering.
