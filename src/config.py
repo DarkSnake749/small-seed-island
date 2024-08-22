@@ -1,5 +1,4 @@
 from pygame import Surface, display
-from camera import Camera
 from os import environ
 
 # Window
@@ -9,9 +8,9 @@ info = display.Info()
 
 class Game_config:
 
-    # size
-    WIDTH: int = info.current_w
-    HEIGHT: int = info.current_h
+    # Size
+    WIDTH: int = 1920
+    HEIGHT: int = 1030
 
     TITLE: str= "Small Seed Island"
     ICON: Surface = Surface((20, 20))
@@ -22,7 +21,6 @@ class Game_config:
 
     # Camera
     SPRITES: list = []
-
 
 class Player_config:
     COLOR: str = "white"

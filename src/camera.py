@@ -32,8 +32,10 @@ class Camera:
         offset: pygame.math.Vector2 = self.center_target(player) if player else pygame.math.Vector2(0, 0)
 
         for sprite in sorted(self.sprites, key = lambda sprite: sprite.rect.centery):
+            # Update the offset pos
+            offset_pos: list[int, int] = sprite.rect.bottomleft - offset
+
             # Draw sprite
-            offset_pos: pygame.Rect = sprite.rect.bottomleft - offset
             self.__display.blit(sprite.image, offset_pos)
             # Update sprite
             sprite.update()

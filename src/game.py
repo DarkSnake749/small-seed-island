@@ -76,7 +76,7 @@ class Game:
     def run(self) -> None:
         """Run the game"""
         # ? Debug element for the camera
-        for _ in range(1): 
+        for _ in range(30): 
             self.__camera.add(Tree(starting_pos=(
                 randrange(0, self.__window.get_width()), 
                 randrange(0, self.__window.get_height())

@@ -1,6 +1,5 @@
 import pygame
-from config import Player_config as pc
-from config import Game_config as gc
+from config import *
 from camera import Camera
 
 class Player:
@@ -13,18 +12,18 @@ class Player:
         """Can cycle through all the element of the window. Useful for collision"""
 
         # Paramters
-        self.__color: str = pc.COLOR
-        self.__width: int = pc.WIDTH
-        self.__height: int = pc.HEIGTH
-        self.__acceleration: float = pc.ACCELERATION
-        self.__speed: float = pc.SPEED
+        self.__color: str = Player_config.COLOR
+        self.__width: int = Player_config.WIDTH
+        self.__height: int = Player_config.HEIGTH
+        self.__acceleration: float = Player_config.ACCELERATION
+        self.__speed: float = Player_config.SPEED
         self.__direction: pygame.math.Vector2 = pygame.math.Vector2(0, 0)
 
         # Image of the player
         self.image: pygame.Surface = pygame.Surface((self.__width, self.__height))
         self.image.fill(self.__color)
         # Player collider
-        self.rect: pygame.Rect = self.image.get_rect(center = (gc.WIDTH/2, gc.HEIGHT/2))
+        self.rect: pygame.Rect = self.image.get_rect(center = (Game_config.WIDTH/2, Game_config.HEIGHT/2))
     
     def direction(self) -> None:
         # Listen for inputs
