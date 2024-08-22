@@ -19,6 +19,10 @@ class Player:
         self.__acceleration: float = pc.ACCELERATION
         self.__speed: float = pc.SPEED
         self.__direction: pygame.math.Vector2 = pygame.math.Vector2(0, 0)
+        self.inventory = [["", "", "", "", ""], 
+                          ["", "", "", "", ""], 
+                          ["", "", "", "", ""],
+                          ["", "", "", "", ""]]
 
         #state of the player
         self.inventory_state: bool = False
@@ -89,6 +93,11 @@ class Player:
     
     def draw_inventory(self, screen):
         pygame.draw.rect(screen, (200, 200, 200), ((gc.WIDTH / 2) - (524 / 2), (gc.HEIGHT / 2) - (360 / 2), 524, 360))
+        for i in range(len(self.inventory)):
+            for j in range(self.inventory[i]):
+                if self.inventory[i][j] != "":
+                    pygame.draw.rect(screen, self.inventory[i][j].color, ((gc.WIDTH / 2) - (524 / 2) + 32, 
+                                                                          (gc.HEIGHT / 2) - (360 / 2) + 32, 50, 50))
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if self.inventory_state == True:
