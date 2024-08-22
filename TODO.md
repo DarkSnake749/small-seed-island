@@ -3,4 +3,4 @@
 3. Make tileset (Traktor) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 4. Make map desing (Lollo21lo)
 5. Make hitbox (BigSnake69)
-6. 
+6. Easy way to create tile map for Lollo21lo
