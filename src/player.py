@@ -20,6 +20,9 @@ class Player:
         self.__speed: float = pc.SPEED
         self.__direction: pygame.math.Vector2 = pygame.math.Vector2(0, 0)
 
+        #state of the player
+        self.draw_inventory_state: bool = False
+
         # Image of the player
         self.image: pygame.Surface = pygame.Surface((self.__width, self.__height))
         self.image.fill(self.__color)
@@ -83,6 +86,9 @@ class Player:
                 # Collision from back
                 elif distance.y >= -self.__speed and not distance.y > 0 and self.__direction.y > 0:
                    self.__direction.y = 0
+    
+    def draw_inventory(self, screen):
+        pass
 
     def update(self) -> None:
         """Update the player"""

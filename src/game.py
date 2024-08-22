@@ -44,6 +44,9 @@ class Game:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_e:
+                    self.player.inventory_state = True if not self.player.inventory_state else False
     
     def __reset(self) -> None:
         """Reset the game window"""
@@ -59,6 +62,10 @@ class Game:
         # Update other element on the screen
         self.__camera.update()
 
+        #check if the state of the inventoty is on
+        #if self.player.inventory_state == True:
+        #    self.player.draw_inventory(self.screen)
+        
         # Update the display
         pygame.display.update()
         # Set the framerate
