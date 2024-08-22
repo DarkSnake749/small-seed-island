@@ -88,7 +88,12 @@ class Player:
                    self.__direction.y = 0
     
     def draw_inventory(self, screen):
-        pass
+        pygame.draw.rect(screen, (200, 200, 200), ((gc.WIDTH / 2) - (524 / 2), (gc.HEIGHT / 2) - (360 / 2), 524, 360))
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if self.player.inventory_state == True:
+                    if event.key == pygame.K_e:
+                        self.player.inventory_state = False
 
     def update(self) -> None:
         """Update the player"""

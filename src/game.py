@@ -63,9 +63,11 @@ class Game:
         self.__camera.update()
 
         #check if the state of the inventoty is on
-        #if self.player.inventory_state == True:
-        #    self.player.draw_inventory(self.screen)
-        
+        for sprite in self.__camera.sprites():
+            if sprite.id == "player":
+                if sprite.inventory_state == True:
+                    sprite.draw_inventory(self.__window)
+
         # Update the display
         pygame.display.update()
         # Set the framerate
