@@ -74,10 +74,10 @@ class Game:
     
     def run(self) -> None:
         """Run the game"""
-        self.__camera.add(Player(pc.COLOR, pc.WIDTH, pc.HEIGTH, pc.ACCELERATION, pc.SPEED))
-
+        self.__camera.add(Player())
+       
         # ? Debug element for the camera
         for _ in range(1): 
             self.__camera.add(Tree(starting_pos=(250, 250)))
-
+            
         self.__game_loop()

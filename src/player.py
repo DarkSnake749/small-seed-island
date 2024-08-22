@@ -1,25 +1,25 @@
 import pygame
+from config import Player_config as pc
+from config import Game_config as gc
 
 class Player:
-    def __init__(
-            self, color: str = "white", width: int = 35, height: 
-            int = 35, acceleration: float = .5, speed: float = 4.5
-        ) -> None:
+    def __init__(self) -> None:
+
         self.id: str = "player"
         """Identification of the player"""
 
         # Paramters
-        self.__color: str = color
-        self.__width: int = width
-        self.__height: int = height
-        self.__acceleration: float = acceleration
-        self.__speed: float = speed
+        self.__color: str = pc.COLOR
+        self.__width: int = pc.WIDTH
+        self.__height: int = pc.HEIGTH
+        self.__acceleration: float = pc.ACCELERATION
+        self.__speed: float = pc.SPEED
 
         # Image of the player
         self.image: pygame.Surface = pygame.Surface((self.__width, self.__height))
         self.image.fill(self.__color)
         # Player collider
-        self.rect: pygame.Rect = self.image.get_rect()
+        self.rect: pygame.Rect = self.image.get_rect(center = (gc.WIDTH/2, gc.HEIGHT/2))
     
     def movement(self) -> None:
         """Move the player"""

@@ -7,18 +7,10 @@ environ['SDL_VIDEO_CENTERED'] = '1'
 info = display.Info()
 
 
-class Player_config:
-    COLOR: str = "white"
-    WIDTH: int = 35
-    HEIGTH: int = 35
-    ACCELERATION: float = .5
-    SPEED: float = 4.5
-
-
 class Game_config:
 
     # size
-    WIDTH = info.current_w - 10
+    WIDTH = info.current_w
     HEIGHT = info.current_w - 10
 
     TITLE = "Small Seed Island"
@@ -30,3 +22,11 @@ class Game_config:
 
     # Camera
     SPRITES: list = []
+
+
+class Player_config:
+    COLOR: str = "white"
+    WIDTH: int = 35
+    HEIGTH: int = WIDTH
+    ACCELERATION: float = .5
+    SPEED: float = 4.5
