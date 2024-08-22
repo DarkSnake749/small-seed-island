@@ -1,6 +1,7 @@
 import pygame
 from camera import Camera
 from player import Player
+from config import Player_config as pc
 
 class Game:
     """
@@ -11,7 +12,7 @@ class Game:
             self, window_size: tuple[int, int], title: str, icon: pygame.Surface, FPS: int,
             backdrop_color: str, sprites: list
     ) -> None:
-        self.__window: pygame.Surface = pygame.display.set_mode(window_size)
+        self.__window: pygame.Surface = pygame.display.set_mode(window_size, pygame.RESIZABLE)
         """Variable that contain the surface of the window"""
 
         # Change the title of the window
@@ -72,5 +73,5 @@ class Game:
     
     def run(self) -> None:
         """Run the game"""
-        self.__camera.add(Player())
+        self.__camera.add(Player(pc.COLOR, pc.WIDTH, pc.HEIGTH, pc.ACCELERATION, pc.SPEED))
         self.__game_loop()
