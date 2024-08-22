@@ -2,6 +2,7 @@ import pygame
 from config import Player_config as pc
 from config import Game_config as gc
 from camera import Camera
+from items import Apple
 
 class Player:
     def __init__(self, camera: Camera) -> None:
@@ -11,6 +12,8 @@ class Player:
 
         self.camera: Camera = camera
         """Can cycle through all the element of the window. Useful for collision"""
+
+        self.apple: Apple = Apple()
 
         # Paramters
         self.__color: str = pc.COLOR
@@ -94,7 +97,7 @@ class Player:
     def draw_inventory(self, screen):
         pygame.draw.rect(screen, (200, 200, 200), ((gc.WIDTH / 2) - (524 / 2), (gc.HEIGHT / 2) - (360 / 2), 524, 360))
         for i in range(len(self.inventory)):
-            for j in range(self.inventory[i]):
+            for j in range(len(self.inventory[i])):
                 if self.inventory[i][j] != "":
                     pygame.draw.rect(screen, self.inventory[i][j].color, ((gc.WIDTH / 2) - (524 / 2) + 32, 
                                                                           (gc.HEIGHT / 2) - (360 / 2) + 32, 50, 50))
