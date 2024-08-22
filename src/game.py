@@ -13,7 +13,7 @@ class Game:
             self, window_size: tuple[int, int], title: str, icon: pygame.Surface, FPS: int,
             backdrop_color: str, sprites: list
     ) -> None:
-        self.__window: pygame.Surface = pygame.display.set_mode(window_size, pygame.RESIZABLE)
+        self.__window: pygame.Surface = pygame.display.set_mode(window_size, pygame.FULLSCREEN)
         """Variable that contain the surface of the window"""
 
         # Change the title of the window

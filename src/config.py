@@ -11,7 +11,7 @@ class Game_config:
 
     # size
     WIDTH = info.current_w
-    HEIGHT = info.current_w - 10
+    HEIGHT = info.current_h
 
     TITLE = "Small Seed Island"
     ICON = Surface((20, 20))
@@ -26,7 +26,7 @@ class Game_config:
 
 class Player_config:
     COLOR: str = "white"
-    WIDTH: int = 35
+    WIDTH: int = ((Game_config.WIDTH + Game_config.HEIGHT) / 2) / 35
     HEIGTH: int = WIDTH
     ACCELERATION: float = .5
-    SPEED: float = 4.5
+    SPEED: float = WIDTH / 10
