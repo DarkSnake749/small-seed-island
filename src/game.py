@@ -1,7 +1,6 @@
 import pygame
 from camera import Camera
 from player import Player
-from config import Player_config as pc
 
 class Game:
     """
@@ -73,5 +72,5 @@ class Game:
     
     def run(self) -> None:
         """Run the game"""
-        self.__camera.add(Player(pc.COLOR, pc.WIDTH, pc.HEIGTH, pc.ACCELERATION, pc.SPEED))
+        self.__camera.add(Player())
         self.__game_loop()
