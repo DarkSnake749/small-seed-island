@@ -1,6 +1,7 @@
 import pygame
 from config import *
 from camera import Camera
+from items import Apple
 
 class Player:
     def __init__(self, camera: Camera) -> None:
@@ -11,6 +12,8 @@ class Player:
         self.camera: Camera = camera
         """Can cycle through all the element of the window. Useful for collision"""
 
+        self.apple: Apple = Apple()
+
         # Paramters
         self.__color: str = Player_config.COLOR
         self.__width: int = Player_config.WIDTH
@@ -18,6 +21,13 @@ class Player:
         self.__acceleration: float = Player_config.ACCELERATION
         self.__speed: float = Player_config.SPEED
         self.__direction: pygame.math.Vector2 = pygame.math.Vector2(0, 0)
+        self.inventory = [["", "", "", "", ""], 
+                          ["", "", "", "", ""], 
+                          ["", "", "", "", ""],
+                          ["", "", "", "", ""]]
+
+        #state of the player
+        self.inventory_state: bool = False
 
         # Image of the player
         self.image: pygame.Surface = pygame.Surface((self.__width, self.__height))
@@ -88,7 +98,19 @@ class Player:
                      # Right collision
                     if self.__direction.y < 0:
                         self.rect.top = sprite.hitbox.bottom
-                
+    
+    def draw_inventory(self, screen):
+        pygame.draw.rect(screen, (200, 200, 200), ((gc.WIDTH / 2) - (524 / 2), (gc.HEIGHT / 2) - (360 / 2), 524, 360))
+        for i in range(len(self.inventory)):
+            for j in range(len(self.inventory[i])):
+                if self.inventory[i][j] != "":
+                    pygame.draw.rect(screen, self.inventory[i][j].color, ((gc.WIDTH / 2) - (524 / 2) + 32, 
+                                                                          (gc.HEIGHT / 2) - (360 / 2) + 32, 50, 50))
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if self.inventory_state == True:
+                    if event.key == pygame.K_e:
+                        self.inventory_state = False
 
     def update(self) -> None:
         """Update the player"""
