@@ -62,29 +62,35 @@ class Player:
 
         # Update position
         self.rect.x += velocity.x
+        self.collision("horizontal")
         self.rect.y += velocity.y
+        self.collision("vertical")
     
-    def collision(self) -> None:
+    def collision(self, axis: str) -> None:
         # Collisions loop
         for sprite in self.camera.sprites:
             if (sprite.id == "tree" and 
-                pygame.Rect.colliderect(self.rect, sprite.rect)):
-                # Calculate the distance between the player and the tree
-                distance: pygame.math.Vector2 = pygame.math.Vector2(
-                    self.rect.centerx - sprite.rect.centerx,
-                    self.rect.centery - sprite.rect.centery
-                )
+                pygame.Rect.colliderect(self.rect, sprite.hitbox)):
+                if axis == "horizontal":
+                    # Left collision
+                    if self.__direction.x > 0:
+                        self.rect.right = sprite.hitbox.left
+                    
+                     # Right collision
+                    if self.__direction.x < 0:
+                        self.rect.left = sprite.hitbox.right
                 
-                # Collision from front (+20 is an offset for cleaner collision)
-                if distance.y <= self.__speed + 20 and not distance.y < 0 and self.__direction.y < 0: 
-                   self.__direction.y = 0
-               
-                # Collision from back
-                elif distance.y >= -self.__speed and not distance.y > 0 and self.__direction.y > 0:
-                   self.__direction.y = 0
+                if axis == "vertical":
+                    # Left collision
+                    if self.__direction.y > 0:
+                        self.rect.bottom = sprite.hitbox.top
+                    
+                     # Right collision
+                    if self.__direction.y < 0:
+                        self.rect.top = sprite.hitbox.bottom
+                
 
     def update(self) -> None:
         """Update the player"""
         self.direction()
-        self.collision()
         self.movement()

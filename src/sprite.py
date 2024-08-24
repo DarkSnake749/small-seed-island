@@ -9,7 +9,9 @@ class Tree:
         # Collider
         self.rect: pygame.Rect = self.image.get_rect(center = starting_pos)
         # Hitbox
-        self.hitbox : pygame.Rect = self.rect.copy().inflate()
+        self.hitbox: pygame.Rect = self.rect.copy().inflate(-self.rect.width * .2, -self.rect.height * .75)
+        self.hitbox_offset: int = 27
     
     def update(self) -> None:
-        pass
+        # Update the hitbox offset
+        self.hitbox.y = self.rect.y + self.hitbox_offset
