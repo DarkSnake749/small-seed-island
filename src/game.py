@@ -3,7 +3,7 @@ from random import randrange
 
 from camera import Camera
 from player import Player
-from entity import Tree
+from sprite import Tree
 
 class Game:
     """
