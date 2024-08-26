@@ -34,6 +34,8 @@ class Player:
         self.image.fill(self.__color)
         # Player collider
         self.rect: pygame.Rect = self.image.get_rect(center = (Game_config.WIDTH/2, Game_config.HEIGHT/2))
+        # Hitbox
+        self.hitbox: pygame.Rect = self.rect.copy().inflate(-17.5, -17.5)
     
     def direction(self) -> None:
         # Listen for inputs
@@ -57,47 +59,55 @@ class Player:
             self.__direction.x * self.__speed,
             self.__direction.y * self.__speed
         )
-        key = pygame.key.get_pressed()
 
-        # Diagonal movement
-        if (key[pygame.K_a] ^ key[pygame.K_d]) and (key[pygame.K_w] ^ key[pygame.K_s]):
-            velocity.x /= (2**0.5)
-            velocity.y /= (2**0.5)
+        # Diagonal movement TODO
+        if self.__direction.x and self.__direction.y:
+            velocity.x /= (2**0.22239242) # I know what you're thinking. But This value is the right one I swear to god. Seriously, I'm not joking
+            velocity.y /= (2**0.22239242)
 
-        # Add acceleration
-        if not key[pygame.K_w] and not key[pygame.K_s]:
-            velocity.y *= self.__acceleration
-        if not key[pygame.K_a] and not key[pygame.K_d]:
-            velocity.x *= self.__acceleration
+        # Add acceleration 
+        velocity.y *= self.__acceleration
+        velocity.x *= self.__acceleration
 
         # Update position
         self.rect.x += velocity.x
+        self.hitbox.centerx = self.rect.centerx
         self.collision("horizontal")
         self.rect.y += velocity.y
+        self.hitbox.centery = self.rect.centery
         self.collision("vertical")
     
     def collision(self, axis: str) -> None:
         # Collisions loop
         for sprite in self.camera.sprites:
             if (sprite.id == "tree" and 
-                pygame.Rect.colliderect(self.rect, sprite.hitbox)):
+                pygame.Rect.colliderect(self.hitbox, sprite.hitbox)):
+                print(True)
                 if axis == "horizontal":
                     # Left collision
                     if self.__direction.x > 0:
-                        self.rect.right = sprite.hitbox.left
+                        self.hitbox.right = sprite.hitbox.left
+                        self.rect.centerx = self.hitbox.centerx
+                        self.rect.centery = self.hitbox.centery
                     
                      # Right collision
                     if self.__direction.x < 0:
-                        self.rect.left = sprite.hitbox.right
+                        self.hitbox.left = sprite.hitbox.right
+                        self.rect.centerx = self.hitbox.centerx
+                        self.rect.centery = self.hitbox.centery
                 
                 if axis == "vertical":
                     # Left collision
                     if self.__direction.y > 0:
-                        self.rect.bottom = sprite.hitbox.top
+                        self.hitbox.bottom = sprite.hitbox.top
+                        self.rect.centerx = self.hitbox.centerx
+                        self.rect.centery = self.hitbox.centery
                     
                      # Right collision
                     if self.__direction.y < 0:
-                        self.rect.top = sprite.hitbox.bottom
+                        self.hitbox.top = sprite.hitbox.bottom
+                        self.rect.centerx = self.hitbox.centerx
+                        self.rect.centery = self.hitbox.centery
     
     def draw_inventory(self, screen):
         pygame.draw.rect(screen, (200, 200, 200), ((Game_config.WIDTH / 2) - (524 / 2), (Game_config.HEIGHT / 2) - (360 / 2), 524, 360))
@@ -114,5 +124,6 @@ class Player:
 
     def update(self) -> None:
         """Update the player"""
+        pygame.draw.rect(pygame.display.get_surface(), "red", self.hitbox)
         self.direction()
-        self.movement()
+        if not self.inventory_state: self.movement()
