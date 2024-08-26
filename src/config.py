@@ -9,8 +9,8 @@ info = display.Info()
 class Game_config:
 
     # Size
-    WIDTH: int = 1920
-    HEIGHT: int = 1030
+    WIDTH: int = 1440
+    HEIGHT: int = 850
 
     TITLE: str= "Small Seed Island"
     ICON: Surface = Surface((20, 20))

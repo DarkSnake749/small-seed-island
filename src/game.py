@@ -11,7 +11,7 @@ class Game:
     """
 
     def __init__(
-            self, window_size: tuple[int, int], title: str, icon: pygame.Surface, FPS: int,
+                       self, window_size: tuple[int, int], title: str, icon: pygame.Surface, FPS: int,
             backdrop_color: str, sprites: list
     ) -> None:
         self.__window: pygame.Surface = pygame.display.set_mode(window_size)
