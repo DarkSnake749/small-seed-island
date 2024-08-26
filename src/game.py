@@ -50,16 +50,10 @@ class Game:
                         if sprite.id == "player":
                             sprite.inventory_state = True if not sprite.inventory_state else False
     
-    def __reset(self) -> None:
-        """Reset the game window"""
-        backdrop: pygame.Surface = pygame.Surface(self.__window.get_size())
-        backdrop.fill(self.__backdrop_color)
-        self.__window.blit(backdrop, (0,0))
-    
     def __update(self) -> None:
         """Update the all element of the window"""
         # Reset the window
-        self.__reset()
+        self.__window.fill(self.__backdrop_color)
 
         # Update other element on the screen
         self.__camera.update()
