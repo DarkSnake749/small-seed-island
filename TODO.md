@@ -1,7 +1,7 @@
 1. Add an inventory system to the player (Player file) (Traktor)
 2. Add a max limit for the cam with the map (DarkSnake749)
-3. Make tileset (Traktor) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-4. Make map desing ( Lollo21lo or DarkSnake749 (for debug reason only!!!) )
+3. Make tileset (Traktor)
+4. Make map desing ( Lollo21lo or DarkSnake749 (for debug reason only !!!) )
 5. Easy way to create tile map for Lollo21lo
-6. Change the __reset function in game.py by self.__window.fill(self.__backdrop_color) (Any body)
-7. Create the assets !!! (Traktor)
+6. Create the assets (Traktor)
+7. Debug when we need to (DarkSnake749)
