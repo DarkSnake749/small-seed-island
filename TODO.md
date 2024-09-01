@@ -5,3 +5,5 @@
 5. Easy way to create tile map for Lollo21lo
 6. Create the assets (Traktor)
 7. Debug when we need to (DarkSnake749)
+8. Dialog with npc and cinematic camera (DarkSnake749)
+9. Combat system (Somebody)

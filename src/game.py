@@ -3,7 +3,7 @@ from random import randrange
 
 from camera import Camera
 from player import Player
-from sprite import Tree
+from sprite import *
 
 class Game:
     """
@@ -45,7 +45,7 @@ class Game:
                 pygame.quit()
                 exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_e:
+                if event.key == pygame.K_ESCAPE:
                     for sprite in self.__camera.sprites:
                         if sprite.id == "player":
                             sprite.inventory_state = True if not sprite.inventory_state else False
@@ -86,6 +86,11 @@ class Game:
                 randrange(0, self.__window.get_width()), 
                 randrange(0, self.__window.get_height())
             )))
+        
+        self.__camera.add(PNG(starting_pos=(
+            randrange(0, self.__window.get_width()), 
+            randrange(0, self.__window.get_height())
+        )))
         
         # ! Add the player after all other element
         self.__camera.add(Player(self.__camera))
