@@ -21,10 +21,12 @@ class Player:
         self.__acceleration: float = Player_config.ACCELERATION
         self.__speed: float = Player_config.SPEED
         self.__direction: pygame.math.Vector2 = pygame.math.Vector2(0, 0)
-        self.inventory = [["", "", "", "", ""], 
-                          ["", "", "", "", ""], 
-                          ["", "", "", "", ""],
-                          ["", "", "", "", ""]]
+        self.inventory: list[list] = [
+            ["", "", "", "", ""], 
+            ["", "", "", "", ""], 
+            ["", "", "", "", ""],
+            ["", "", "", "", ""]
+        ]
 
         #state of the player
         self.inventory_state: bool = False
@@ -39,7 +41,7 @@ class Player:
     
     def direction(self) -> None:
         # Listen for inputs
-        key = pygame.key.get_pressed()
+        key: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
         # Y axis
         if key[pygame.K_w]:
             self.__direction.y = -1
@@ -80,9 +82,10 @@ class Player:
     def collision(self, axis: str) -> None:
         # Collisions loop
         for sprite in self.camera.sprites:
-            if (sprite.id == "tree" and 
-                pygame.Rect.colliderect(self.hitbox, sprite.hitbox)):
-                print(True)
+            if (
+                sprite.id == "tree" and 
+                pygame.Rect.colliderect(self.hitbox, sprite.hitbox)
+            ):
                 if axis == "horizontal":
                     # Left collision
                     if self.__direction.x > 0:
@@ -108,6 +111,16 @@ class Player:
                         self.hitbox.top = sprite.hitbox.bottom
                         self.rect.centerx = self.hitbox.centerx
                         self.rect.centery = self.hitbox.centery
+
+    def interaction(self) -> None: 
+        keys: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
+        for sprite in self.camera.sprites:
+            if (
+                sprite.id.startswith("npc") and 
+                pygame.Rect.colliderect(self.hitbox, sprite.area) and
+                keys[pygame.K_e]
+            ):
+                print(True)
     
     def draw_inventory(self, screen):
         pygame.draw.rect(screen, (200, 200, 200), ((Game_config.WIDTH / 2) - (524 / 2), (Game_config.HEIGHT / 2) - (360 / 2), 524, 360))
@@ -119,11 +132,12 @@ class Player:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if self.inventory_state == True:
-                    if event.key == pygame.K_e:
+                    if event.key == pygame.K_ESCAPE:
                         self.inventory_state = False
 
     def update(self) -> None:
         """Update the player"""
-        pygame.draw.rect(pygame.display.get_surface(), "red", self.hitbox)
         self.direction()
-        if not self.inventory_state: self.movement()
+        if not self.inventory_state:
+            self.interaction() 
+            self.movement()
