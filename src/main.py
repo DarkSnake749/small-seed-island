@@ -7,6 +7,9 @@ from config import Game_config as gc
 from game import Game
 
 def main() -> None:
+    # Init pygame
+    init()
+    
     """Main function of the script"""
     game: Game = Game((gc.WIDTH, gc.HEIGHT), gc.TITLE, gc.ICON, gc.FPS, gc.BACKDROP_COLOR, gc.SPRITES)
     game.run()
