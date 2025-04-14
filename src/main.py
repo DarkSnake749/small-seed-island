@@ -16,7 +16,8 @@ class Game:
 
         #variable clock
         self.clock: pg.time.Clock = pg.time.Clock()
-        self.max_framerate: int = 60
+        self.tps: int = 60
+        """ Tick per seconds. Variables to control the speed of the clock """
 
         #variable player
         self.player: Player = Player()
