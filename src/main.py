@@ -7,14 +7,18 @@ pg.init()
 
 class Game:
     def __init__(self):
+        #variable visuel
         self.screen: pg.Surface = pg.display.set_mode((1270, 720))
         self.background_color: pg.Color = pg.Color(0, 0, 0, 255)
 
+        #variable loop
         self.run: bool = True
 
+        #variable clock
         self.clock: pg.time.Clock = pg.time.Clock()
         self.max_framrate: int = 60
 
+        #variable player
         self.player: Player = Player()
     
     def event_loop(self) -> None:
