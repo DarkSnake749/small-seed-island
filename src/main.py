@@ -1,6 +1,8 @@
 import pygame as pg
 from sys import exit
 
+from src.player import *
+
 pg.init()
 
 class Game:
@@ -12,6 +14,8 @@ class Game:
 
         self.clock: pg.time.Clock = pg.time.Clock()
         self.max_framrate: int = 60
+
+        self.player: Player
     
     def event_loop(self) -> None:
         for event in pg.event.get():
@@ -34,4 +38,3 @@ class Game:
 if __name__ == "__main__":
     game: Game = Game()
     game.main_loop()
-    
