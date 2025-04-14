@@ -6,7 +6,7 @@ from player import *
 pg.init()
 
 class Game:
-    def __init__(self):
+    def __init__(self) -> None:
         #variable visuel
         self.screen: pg.Surface = pg.display.set_mode((1270, 720))
         self.background_color: pg.Color = pg.Color(0, 0, 0, 255)
@@ -26,7 +26,7 @@ class Game:
             if event.type == pg.QUIT:
                 self.run = False
 
-    def main_loop(self):
+    def main_loop(self) -> None:
         while self.run:
             self.event_loop()
 
