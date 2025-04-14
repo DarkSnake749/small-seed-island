@@ -1,7 +1,7 @@
 import pygame as pg
 from sys import exit
 
-from src.player import *
+from player import *
 
 pg.init()
 
@@ -15,7 +15,7 @@ class Game:
         self.clock: pg.time.Clock = pg.time.Clock()
         self.max_framrate: int = 60
 
-        self.player: Player
+        self.player: Player = Player()
     
     def event_loop(self) -> None:
         for event in pg.event.get():
@@ -28,6 +28,9 @@ class Game:
 
             # Clear the background
             self.screen.fill(self.background_color)
+
+            # Update the player
+            self.player.update()
 
             pg.display.update()
             self.clock.tick(self.max_framrate)
