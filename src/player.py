@@ -6,6 +6,10 @@ class Player:
         self.health: int = 100
         self.rect: pg.Rect = pg.Rect(0, 0, 20, 20)
 
+        self.direction: pg.Vector2 = pg.Vector2(0, 0)
+        self.velocity: pg.Vector2 = pg.Vector2(0, 0)
+        self.position: pg.Vector2 = pg.Vector2(0, 0)
+
         # ? Sûrement à modifer plus tard
 
         # * Note:
