@@ -38,7 +38,7 @@ class Game:
             self.player.update()
 
             pg.display.update()
-            self.clock.tick(self.max_framerate)
+            self.clock.tick(self.tps)
         
         pg.quit()
         exit()
