@@ -1,0 +1,1 @@
+1. Arranger les values dans player (voir TODO) pour que ça soit smooth sa race (ps. Tu peux demander à Laurent pour que ça soit vraiment smooth)
