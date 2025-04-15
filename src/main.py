@@ -16,7 +16,7 @@ class Game:
 
         #variable clock
         self.clock: pg.time.Clock = pg.time.Clock()
-        self.max_framrate: int = 60
+        self.max_framerate: int = 60
 
         #variable player
         self.player: Player = Player()
@@ -37,7 +37,7 @@ class Game:
             self.player.update()
 
             pg.display.update()
-            self.clock.tick(self.max_framrate)
+            self.clock.tick(self.max_framerate)
         
         pg.quit()
         exit()
