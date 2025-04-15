@@ -16,10 +16,10 @@ class Player:
         self.velocity: pg.Vector2 = pg.Vector2(0, 0)
         self.position: pg.Vector2 = pg.Vector2(0, 0)
 
-        # TODO: Arrange ces variables pour que sa feel smooth sa race (fine tune)
-        self.acceleration: float = 1.5
-        self.deceleration: float = 0.8
-        self.max_speed: float = 20.0
+        # TODO: verifier si c good pour le rouquin
+        self.acceleration: float = 1.53
+        self.deceleration: float = 0.82
+        self.max_speed: float = 17.0
     
     def update_direction(self) -> None:
         key = pg.key.get_pressed()
