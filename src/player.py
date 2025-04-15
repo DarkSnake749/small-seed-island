@@ -16,9 +16,8 @@ class Player:
         self.velocity: pg.Vector2 = pg.Vector2(0, 0)
         self.position: pg.Vector2 = pg.Vector2(0, 0)
 
-        # TODO: verifier si c good pour le rouquin
         self.acceleration: float = 1.53
-        self.deceleration: float = 0.82
+        self.deceleration: float = 0.75
         self.max_speed: float = 17.0
     
     def update_direction(self) -> None:
@@ -49,8 +48,8 @@ class Player:
         self.velocity.y += self.acceleration * self.direction.y
 
         # Deceleration
-        self.velocity.x *= self.deceleration
-        self.velocity.y *= self.deceleration
+        self.velocity.x *= 0 if abs(self.velocity.x) < 1 else self.deceleration
+        self.velocity.y *= 0 if abs(self.velocity.y) < 1 else self.deceleration
     
     def update_position(self) -> None:
         self.rect.x += self.velocity.x 
