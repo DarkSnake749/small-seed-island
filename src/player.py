@@ -10,13 +10,6 @@ class Player:
         self.velocity: pg.Vector2 = pg.Vector2(0, 0)
         self.position: pg.Vector2 = pg.Vector2(0, 0)
 
-        # ? Sûrement à modifer plus tard
-
-        # * Note:
-        # * On va le calculer avec en utilisant les beaux sprites qu'ON va trouver ou desing.
-        # * Anyway, on en auras pas besoin à cause que la class pg.Rect les a déja built-in.
-        # * Je les gardes quand même au cas où... (tu peux le suprrimer quand tu le verras)
-
         #self.width: int = 20 
         #self.height: int = 20
 
@@ -25,3 +18,15 @@ class Player:
     
     def update(self) -> None:
         self.draw()
+
+    def move(self) -> None: #g pas pu faire plus doit aller manger
+        key = pg.key.get_pressed()
+
+        if key[pg.K_w]:
+            pass
+        if key[pg.K_s]:
+            pass
+        if key[pg.K_a]:
+            pass
+        if key[pg.K_d]:
+            pass
