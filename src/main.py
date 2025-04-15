@@ -13,7 +13,7 @@ class Game:
 
         #variable loop
         self.run: bool = True
-        self.dt: float = 0.1
+        self.delta_time: float = 0.0
 
         #variable clock
         self.clock: pg.time.Clock = pg.time.Clock()
@@ -36,11 +36,11 @@ class Game:
             self.screen.fill(self.background_color)
 
             # Update the player
-            self.player.update()
+            self.player.update(self.delta_time)
 
             pg.display.update()
-            self.dt = self.clock.tick(self.tps) / 1000
-            self.dt = max(0.001, min(0.1, self.dt))
+            self.delta_time = self.clock.tick(self.tps) / 1000
+            self.delta_time = max(0.001, min(0.1, self.delta_time))
         
         pg.quit()
         exit()

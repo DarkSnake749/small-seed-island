@@ -3,6 +3,7 @@ import pygame as pg
 class Player:
     def __init__(self, health: int = 100,) -> None:
         self.screen: pg.Surface = pg.display.get_surface()
+        self.delta_time: float = 0.0
         self.health: int = 100
 
         # Display and collision
@@ -16,9 +17,9 @@ class Player:
         self.velocity: pg.Vector2 = pg.Vector2(0, 0)
         self.position: pg.Vector2 = pg.Vector2(0, 0)
 
-        self.acceleration: float = 1.53
+        self.acceleration: float = 153
         self.deceleration: float = 0.75
-        self.max_speed: float = 17.0
+        self.max_speed = 250
     
     def update_direction(self) -> None:
         key = pg.key.get_pressed()
@@ -44,12 +45,15 @@ class Player:
     
     def update_velocity(self) -> None:
         # Acceleration
-        self.velocity.x += self.acceleration * self.direction.x
-        self.velocity.y += self.acceleration * self.direction.y
+        self.velocity.x += self.acceleration * self.direction.x * self.delta_time
+        self.velocity.y += self.acceleration * self.direction.y * self.delta_time
 
         # Deceleration
-        self.velocity.x *= 0 if abs(self.velocity.x) < 1 else self.deceleration
-        self.velocity.y *= 0 if abs(self.velocity.y) < 1 else self.deceleration
+        self.velocity.x *= 0 if abs(self.velocity.x) < 0.75 else self.deceleration
+        self.velocity.y *= 0 if abs(self.velocity.y) < 0.75 else self.deceleration
+
+        # Max speed
+        self.velocity.scale_to_length(self.max_speed * self.delta_time) if self.velocity.length() > self.max_speed * self.delta_time else None
     
     def update_position(self) -> None:
         self.rect.x += self.velocity.x 
@@ -58,7 +62,10 @@ class Player:
     def draw(self) -> None:
         pg.draw.rect(self.screen, (255, 255, 255), self.rect)
     
-    def update(self) -> None:
+    def update(self, delta_time: float) -> None:
+        # Update delta time
+        self.delta_time = delta_time
+
         # Update components
         self.update_direction()
         self.update_velocity()
